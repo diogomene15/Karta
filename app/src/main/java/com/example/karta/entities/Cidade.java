@@ -14,6 +14,9 @@ public class Cidade {
         return cidadeId;
     }
 
+    public void setCidadeId(int cidadeId) {
+        this.cidadeId = cidadeId;
+    }
 
     public String getCidade() {
         return cidade;

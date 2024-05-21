@@ -16,6 +16,10 @@ public class Endereco {
         return enderecoId;
     }
 
+    public void setEnderecoId(int enderecoId) {
+        this.enderecoId = enderecoId;
+    }
+
     public String getDescricao() {
         return descricao;
     }

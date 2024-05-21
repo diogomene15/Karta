@@ -14,6 +14,10 @@ public class Usuario {
         return usuarioId;
     }
 
+    public void setUsuarioId(int usuarioId) {
+        this.usuarioId = usuarioId;
+    }
+
     public String getNome() {
         return nome;
     }
