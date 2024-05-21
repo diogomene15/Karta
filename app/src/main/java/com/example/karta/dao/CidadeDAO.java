@@ -15,7 +15,7 @@ import java.util.List;
 public interface CidadeDAO {
     @Query("SELECT * FROM Cidade WHERE cidadeId=:idCidade LIMIT 1")
     public Cidade getEndereco(int idCidade);
-    @Query("SELECT * FROM Endereco")
+    @Query("SELECT * FROM Cidade")
     public List<Cidade> getAll();
 
     @Insert
