@@ -1,7 +1,8 @@
-package com.example.karta;
+package com.example.karta.activities;
 
 import android.os.Bundle;
 
+import com.example.karta.R;
 import com.google.android.material.snackbar.Snackbar;
 
 import androidx.appcompat.app.AppCompatActivity;
