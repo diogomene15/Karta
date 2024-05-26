@@ -14,6 +14,10 @@ import java.util.List;
 public interface UsuarioDAO {
     @Query("SELECT * FROM Usuario WHERE usuarioId=:idUsuario LIMIT 1")
     public Usuario getUser(int idUsuario);
+
+    @Query("SELECT * FROM Usuario WHERE email=:email LIMIT 1")
+    public Usuario getUserByEmail(String email);
+
     @Query("SELECT * FROM Usuario")
     public List<Usuario> getAll();
 
