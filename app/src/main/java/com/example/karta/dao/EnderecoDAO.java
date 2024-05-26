@@ -17,6 +17,9 @@ public interface EnderecoDAO {
     @Query("SELECT * FROM Endereco")
     public List<Endereco> getAll();
 
+    @Query("SELECT * FROM Endereco WHERE latitude=:latitude AND longitude=:longitude LIMIT 1")
+    public Endereco getByLatLong(Double latitude, Double longitude);
+
     @Insert
     void insert(Endereco endereco);
 
