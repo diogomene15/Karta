@@ -1,15 +1,23 @@
 package com.example.karta.entities;
 
 import androidx.room.Entity;
+import androidx.room.ForeignKey;
 import androidx.room.PrimaryKey;
 
-@Entity
-public class Endereco {
+import java.io.Serializable;
+
+@Entity(
+        foreignKeys = {
+                @ForeignKey(entity = Cidade.class, parentColumns = "cidadeId", childColumns = "cidadeId")
+        }
+)
+public class Endereco implements Serializable {
     @PrimaryKey(autoGenerate = true)
     int enderecoId;
     String descricao;
     double latitude;
     double longitude;
+    int cidadeId;
 
     public Endereco(String descricao, double latitude, double longitude) {
         this.descricao = descricao;
@@ -47,5 +55,12 @@ public class Endereco {
 
     public void setLongitude(double longitude) {
         this.longitude = longitude;
+    }
+
+    public int getCidadeId() {
+        return cidadeId;
+    }
+    public void setCidadeId(int cidadeId) {
+        this.cidadeId = cidadeId;
     }
 }

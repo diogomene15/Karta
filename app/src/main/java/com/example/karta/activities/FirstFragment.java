@@ -1,5 +1,6 @@
 package com.example.karta.activities;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -11,6 +12,7 @@ import androidx.navigation.fragment.NavHostFragment;
 
 import com.example.karta.R;
 import com.example.karta.databinding.FragmentFirstBinding;
+import com.example.karta.entities.Endereco;
 
 public class FirstFragment extends Fragment {
 
@@ -30,9 +32,15 @@ public class FirstFragment extends Fragment {
     public void onViewCreated(@NonNull View view, Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
 
-        binding.buttonFirst.setOnClickListener(v ->
-                NavHostFragment.findNavController(FirstFragment.this)
-                        .navigate(R.id.action_FirstFragment_to_SecondFragment)
+        binding.buttonFirst.setOnClickListener(v ->{
+                    Endereco end = new Endereco();
+                    end.setDescricao("Tupi");
+                    end.setLatitude(-20.5000477);
+                    end.setLongitude(-54.6191862);
+                    Intent intent = new Intent(getActivity(), Mapa.class);
+                    intent.putExtra("endereco", end);
+                    startActivity(intent);
+                }
         );
     }
 
