@@ -7,7 +7,7 @@ import java.io.Serializable;
 @Entity
 public class Usuario implements Serializable {
     @PrimaryKey(autoGenerate = true)
-    private int usuarioId;
+    private long usuarioId;
     private String nome;
     private String email;
     private String senha;
@@ -25,11 +25,11 @@ public class Usuario implements Serializable {
         this.senha = senha;
     }
 
-    public int getUsuarioId() {
+    public long getUsuarioId() {
         return usuarioId;
     }
 
-    public void setUsuarioId(int usuarioId) {
+    public void setUsuarioId(long usuarioId) {
         this.usuarioId = usuarioId;
     }
 
