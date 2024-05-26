@@ -19,9 +19,13 @@ import com.example.karta.databinding.CadastroEnderecoFragmentBinding;
 import com.example.karta.entities.Cidade;
 import com.example.karta.entities.Endereco;
 
+import java.util.List;
+
 public class CadastroEnderecoFragment extends Fragment {
 
     private CadastroEnderecoFragmentBinding binding;
+
+    private int cidadeId = 0;
 
     @Override
     public View onCreateView(@NonNull LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
@@ -37,7 +41,7 @@ public class CadastroEnderecoFragment extends Fragment {
         binding.spinnerCidades.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
             @Override
             public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
-
+                cidadeId = ((Cidade) parent.getItemAtPosition(position)).getCidadeId();
             }
 
             @Override
@@ -53,8 +57,8 @@ public class CadastroEnderecoFragment extends Fragment {
                 Double enderecoLongitude = Double.parseDouble(binding.inputLongitude.getText().toString());
                 String enderecoDescricao = binding.inputDescricao.getText().toString();
 
-                if (enderecoLatitude == null && enderecoLongitude == null && !enderecoDescricao.isEmpty()) {
-                    new InsertEnderecoTask().execute(new Endereco(enderecoDescricao, enderecoLatitude, enderecoLongitude));
+                if (enderecoLatitude != null && enderecoLongitude != null && !enderecoDescricao.isEmpty() && cidadeId != 0) {
+                    new InsertEnderecoTask().execute(new Endereco(enderecoDescricao, enderecoLatitude, enderecoLongitude, cidadeId));
                 } else {
                     Toast.makeText(getActivity(), "Preencha todos os campos", Toast.LENGTH_SHORT).show();
                 }
@@ -66,6 +70,12 @@ public class CadastroEnderecoFragment extends Fragment {
     public void onDestroyView() {
         super.onDestroyView();
         binding = null;
+    }
+
+    private List<Cidade> getAllCidades(){
+        AppDatabase db = AppDatabase.getDatabase(getContext());
+        List<Cidade> cidades = db.cidadeDao().getAll();
+        return cidades;
     }
 
     private class InsertEnderecoTask extends AsyncTask<Endereco, Void, Endereco> {
