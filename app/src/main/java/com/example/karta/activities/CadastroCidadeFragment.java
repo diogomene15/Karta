@@ -26,9 +26,6 @@ import java.util.List;
 public class CadastroCidadeFragment extends Fragment {
 
     private CadastroCidadeFragmentBinding binding;
-    List<Cidade> cidades;
-    List<String> cidadesStr;
-
     @Override
     public View onCreateView(@NonNull LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
 

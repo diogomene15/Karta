@@ -32,23 +32,19 @@ public class LoginFragment extends Fragment {
     public void onViewCreated(@NonNull View view, Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
 
-        binding.buttonSubmitLogin.setOnClickListener(v ->
-                NavHostFragment.findNavController(LoginFragment.this)
-                        .navigate(R.id.action_LoginFragment_to_CidadesFragment)
-        );
+        binding.buttonSubmitLogin.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                String emailAd = binding.inputLoginEmailAddress.getText().toString();
+                String pwd = binding.inputLoginPassword.getText().toString();
 
-        //    @Override
-        //    public void onClick(View v) {
-        //        String emailAd = binding.inputLoginEmailAddress.getText().toString();
-        //        String pwd = binding.inputLoginPassword.getText().toString();
-//
-        //        if (!emailAd.isEmpty() && !pwd.isEmpty()) {
-        //            new GetUserTask().execute(new Usuario(emailAd, pwd));
-        //        } else {
-        //            Toast.makeText(getActivity(), "Preencha todos os campos", Toast.LENGTH_SHORT).show();
-        //        }
-        //    }
-        //});
+                if (!emailAd.isEmpty() && !pwd.isEmpty()) {
+                    new GetUserTask().execute(new Usuario(emailAd, pwd));
+                } else {
+                    Toast.makeText(getActivity(), "Preencha todos os campos", Toast.LENGTH_SHORT).show();
+                }
+            }
+        });
 
 
         binding.buttonCadastroFragmentNav.setOnClickListener(v ->
