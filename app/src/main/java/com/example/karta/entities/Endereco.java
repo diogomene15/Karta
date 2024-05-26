@@ -11,6 +11,11 @@ public class Endereco {
     double latitude;
     double longitude;
 
+    public Endereco(String descricao, double latitude, double longitude) {
+        this.descricao = descricao;
+        this.latitude = latitude;
+        this.longitude = longitude;
+    }
 
     public int getEnderecoId() {
         return enderecoId;
