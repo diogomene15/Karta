@@ -6,6 +6,7 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.AdapterView;
+import android.widget.ArrayAdapter;
 import android.widget.Toast;
 
 import androidx.annotation.NonNull;
@@ -19,6 +20,7 @@ import com.example.karta.databinding.CadastroEnderecoFragmentBinding;
 import com.example.karta.entities.Cidade;
 import com.example.karta.entities.Endereco;
 
+import java.util.ArrayList;
 import java.util.List;
 
 public class CadastroEnderecoFragment extends Fragment {
@@ -37,18 +39,18 @@ public class CadastroEnderecoFragment extends Fragment {
 
     public void onViewCreated(@NonNull View view, Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
-
         binding.spinnerCidades.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
             @Override
             public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
                 cidadeId = ((Cidade) parent.getItemAtPosition(position)).getCidadeId();
             }
-
             @Override
-            public void onNothingSelected(AdapterView<?> parent) {
-
-            }
+            public void onNothingSelected(AdapterView<?> parent) {}
         });
+
+        ArrayAdapter<Cidade> adapt = new ArrayAdapter<Cidade>(view.getContext(), android.R.layout.simple_spinner_item, getAllCidades());
+        adapt.setDropDownViewResource(android.R.layout.select_dialog_singlechoice);
+        binding.spinnerCidades.setAdapter(adapt);
 
         binding.buttonAdicionar.setOnClickListener(new View.OnClickListener() {
             @Override

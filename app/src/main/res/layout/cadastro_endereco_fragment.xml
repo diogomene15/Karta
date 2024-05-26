@@ -92,12 +92,12 @@
         android:layout_height="wrap_content"
         android:layout_marginStart="24dp"
         android:layout_marginTop="12dp"
-        android:layout_marginEnd="340dp"
+        android:layout_marginEnd="321dp"
         android:layout_marginBottom="3dp"
         android:text="Cidade:"
         app:layout_constraintBottom_toTopOf="@+id/spinnerCidades"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="1.0"
+        app:layout_constraintHorizontal_bias="0.0"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/inputDescricao" />
 
@@ -120,7 +120,7 @@
         android:layout_height="wrap_content"
         android:layout_marginStart="24dp"
         android:layout_marginTop="12dp"
-        android:layout_marginEnd="321dp"
+        android:layout_marginEnd="333dp"
         android:layout_marginBottom="3dp"
         android:text="Descrição:"
         app:layout_constraintBottom_toTopOf="@+id/inputDescricao"

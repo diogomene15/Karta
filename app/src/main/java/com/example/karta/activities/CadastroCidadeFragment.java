@@ -20,10 +20,12 @@ import com.example.karta.databinding.CadastroFragmentBinding;
 import com.example.karta.entities.Cidade;
 import com.example.karta.entities.Usuario;
 
+import java.util.ArrayList;
+import java.util.List;
+
 public class CadastroCidadeFragment extends Fragment {
 
     private CadastroCidadeFragmentBinding binding;
-
     @Override
     public View onCreateView(@NonNull LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
 

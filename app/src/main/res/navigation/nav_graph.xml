@@ -72,4 +72,11 @@
         tools:layout="@layout/cadastro_cidade_fragment">
     </fragment>
 
+    <fragment
+        android:id="@+id/CadastroEnderecoFragment"
+        android:name="com.example.karta.activities.CadastroEnderecoFragment"
+        android:label="Cidades"
+        tools:layout="@layout/cadastro_endereco_fragment">
+    </fragment>
+
 </navigation>
