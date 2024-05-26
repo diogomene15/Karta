@@ -18,6 +18,9 @@ public interface CidadeDAO {
     @Query("SELECT * FROM Cidade")
     public List<Cidade> getAll();
 
+    @Query("SELECT * FROM Cidade WHERE cidade=:cidade AND estado=:estado LIMIT 1")
+    public Cidade getByCidadeAndEstado(String cidade, String estado);
+
     @Insert
     void insert(Cidade cidade);
 

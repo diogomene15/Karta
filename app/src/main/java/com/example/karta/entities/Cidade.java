@@ -10,6 +10,11 @@ public class Cidade {
     String cidade;
     String estado;
 
+    public Cidade(String cidade, String estado) {
+        this.cidade = cidade;
+        this.estado = estado;
+    }
+
     public int getCidadeId() {
         return cidadeId;
     }
@@ -33,4 +38,9 @@ public class Cidade {
     public void setEstado(String estado) {
         this.estado = estado;
     }
+
+    public String toString(){
+        return this.getCidade() + " - " + this.getEstado();
+    }
+
 }
