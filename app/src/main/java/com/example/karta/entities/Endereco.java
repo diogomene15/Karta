@@ -19,6 +19,14 @@ public class Endereco implements Serializable {
     double longitude;
     int cidadeId;
 
+    public Endereco(String descricao, double latitude, double longitude, int cidadeId) {
+        this.descricao = descricao;
+        this.latitude = latitude;
+        this.longitude = longitude;
+        this.cidadeId = cidadeId;
+    }
+
+    public Endereco(){}
 
     public int getEnderecoId() {
         return enderecoId;
