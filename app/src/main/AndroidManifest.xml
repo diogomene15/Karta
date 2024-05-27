@@ -15,6 +15,9 @@
         android:theme="@style/Theme.Karta"
         tools:targetApi="31">
         <activity
+            android:name=".activities.UsuariosListActivity"
+            android:exported="false" />
+        <activity
             android:name=".activities.EditUsuarioActivity"
             android:exported="false" />
         <activity

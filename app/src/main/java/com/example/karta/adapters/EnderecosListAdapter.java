@@ -12,14 +12,15 @@ import android.widget.TextView;
 import com.example.karta.R;
 import com.example.karta.activities.Mapa;
 import com.example.karta.entities.Endereco;
+import com.example.karta.entities.EnderecoCidade;
 
 import java.util.List;
 
 public class EnderecosListAdapter extends BaseAdapter {
     private LayoutInflater mInflater;
-    private List<Endereco> items;
+    private List<EnderecoCidade> items;
 
-    public EnderecosListAdapter(Context context, List<Endereco> items){
+    public EnderecosListAdapter(Context context, List<EnderecoCidade> items){
         this.items = items;
         this.mInflater = LayoutInflater.from(context);
     }
@@ -56,13 +57,13 @@ public class EnderecosListAdapter extends BaseAdapter {
             itemAux = (AdapterItemAux) convertView.getTag();
         }
 
-        Endereco item = (Endereco) getItem(position);
+        EnderecoCidade item = (EnderecoCidade) getItem(position);
 
-        itemAux.enderecoDesc.setText(item.getDescricao());
+        itemAux.enderecoDesc.setText(String.format("%s (%s - %s)", item.endereco.getDescricao(), item.cidade.getCidade(), item.cidade.getEstado()));
         itemAux.btnMapa.setOnClickListener(v -> {
             //iniciar atividade de Mapa com intent com extra de endereco
             Intent intent = new Intent(v.getContext(), Mapa.class);
-            intent.putExtra("endereco", item);
+            intent.putExtra("endereco", item.endereco);
             v.getContext().startActivity(intent);
         });
         return convertView;

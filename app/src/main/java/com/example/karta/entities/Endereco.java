@@ -8,7 +8,7 @@ import java.io.Serializable;
 
 @Entity(
         foreignKeys = {
-                @ForeignKey(entity = Cidade.class, parentColumns = "cidadeId", childColumns = "cidadeId")
+                @ForeignKey(entity = Cidade.class, parentColumns = "cidadeId", childColumns = "cidadeIdFk")
         }
 )
 public class Endereco implements Serializable {
@@ -17,13 +17,13 @@ public class Endereco implements Serializable {
     String descricao;
     double latitude;
     double longitude;
-    int cidadeId;
+    int cidadeIdFk;
 
-    public Endereco(String descricao, double latitude, double longitude, int cidadeId) {
+    public Endereco(String descricao, double latitude, double longitude, int cidadeIdFk) {
         this.descricao = descricao;
         this.latitude = latitude;
         this.longitude = longitude;
-        this.cidadeId = cidadeId;
+        this.cidadeIdFk = cidadeIdFk;
     }
 
     public Endereco(){}
@@ -60,10 +60,10 @@ public class Endereco implements Serializable {
         this.longitude = longitude;
     }
 
-    public int getCidadeId() {
-        return cidadeId;
+    public int getCidadeIdFk() {
+        return cidadeIdFk;
     }
-    public void setCidadeId(int cidadeId) {
-        this.cidadeId = cidadeId;
+    public void setCidadeIdFk(int cidadeIdFk) {
+        this.cidadeIdFk = cidadeIdFk;
     }
 }

@@ -17,6 +17,7 @@ import com.example.karta.dao.EnderecoDAO;
 import com.example.karta.database.AppDatabase;
 import com.example.karta.databinding.FragmentEnderecosBinding;
 import com.example.karta.entities.Endereco;
+import com.example.karta.entities.EnderecoCidade;
 
 import java.util.List;
 
@@ -47,9 +48,9 @@ public class EnderecosFragment extends Fragment {
          AppDatabase db = AppDatabase.getDatabase(getContext());
          enderecoDAO = db.enderecoDao();
 
-         List<Endereco> enderecos = enderecoDAO.getAll();
+         List<EnderecoCidade> enderecosCidade = enderecoDAO.getAllEnderecoCidade();
 
-         binding.listCidades.setAdapter(new EnderecosListAdapter(getContext(), enderecos));
+         binding.listCidades.setAdapter(new EnderecosListAdapter(getContext(), enderecosCidade));
 
 
 

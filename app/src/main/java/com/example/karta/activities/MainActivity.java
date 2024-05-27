@@ -4,6 +4,7 @@ import android.content.Intent;
 import android.os.Bundle;
 
 import com.example.karta.R;
+import com.example.karta.useCases.CurrentUser;
 import com.google.android.material.snackbar.Snackbar;
 
 import androidx.appcompat.app.AppCompatActivity;
@@ -19,6 +20,7 @@ import com.example.karta.databinding.ActivityMainBinding;
 
 import android.view.Menu;
 import android.view.MenuItem;
+import android.widget.Toast;
 
 public class MainActivity extends AppCompatActivity {
 
@@ -38,14 +40,7 @@ public class MainActivity extends AppCompatActivity {
         appBarConfiguration = new AppBarConfiguration.Builder(navController.getGraph()).build();
         NavigationUI.setupActionBarWithNavController(this, navController, appBarConfiguration);
 
-        binding.fab.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                Snackbar.make(view, "Replace with your own action", Snackbar.LENGTH_LONG)
-                        .setAnchorView(R.id.fab)
-                        .setAction("Action", null).show();
-            }
-        });
+
     }
 
     @Override
@@ -63,8 +58,15 @@ public class MainActivity extends AppCompatActivity {
         int id = item.getItemId();
 
         //noinspection SimplifiableIfStatement
-        if (id == R.id.edit_user) {
-            startActivity(new Intent(MainActivity.this, EditUsuarioActivity.class));
+        CurrentUser cu = CurrentUser.getInstance();
+        if(cu.getUser()!=null){
+            if (id == R.id.edit_user) {
+                startActivity(new Intent(MainActivity.this, EditUsuarioActivity.class));
+            }else if(id == R.id.list_users){
+                startActivity(new Intent(MainActivity.this, UsuariosListActivity.class));
+            }
+        }else{
+            Toast.makeText(this, "Por favor, realize o login", Toast.LENGTH_SHORT).show();
         }
 
         return super.onOptionsItemSelected(item);

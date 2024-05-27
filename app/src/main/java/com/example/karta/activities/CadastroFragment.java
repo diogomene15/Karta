@@ -35,6 +35,9 @@ public class CadastroFragment extends Fragment {
     public void onViewCreated(@NonNull View view, Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
 
+        CurrentUser cu = CurrentUser.getInstance();
+        cu.setUser(null);
+
         binding.buttonSubmitCadastro.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
