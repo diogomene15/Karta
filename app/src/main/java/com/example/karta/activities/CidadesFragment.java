@@ -39,16 +39,15 @@ public class CidadesFragment extends Fragment {
     public void onViewCreated(@NonNull View view, Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
 
-        List<Cidade> cidades = this.getAllCidades();
-        List<String> cidadesStr = new ArrayList<>();
+        CidadeAdapter cidades = new CidadeAdapter(view.getContext(), this.getAllCidades());
 
-        for (Cidade c : cidades){
-            cidadesStr.add(c.toString());
-        }
-
-        ArrayAdapter<String> adapt = new ArrayAdapter<String>(view.getContext(), android.R.layout.simple_expandable_list_item_1, cidadesStr);
-
-        binding.listCidades.setAdapter(adapt);
+        binding.listCidades.setAdapter(cidades);
+        //binding.listCidades.notify();
+        //runOnUiThread(new Runnable() {
+        //    public void run() {
+        //        adapter.notifyDataSetChanged();
+        //    }
+        //});
 
         binding.buttonAddCidade.setOnClickListener(v ->
                 NavHostFragment.findNavController(CidadesFragment.this)
