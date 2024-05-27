@@ -74,6 +74,10 @@ public class CadastroEnderecoFragment extends Fragment {
             NavHostFragment.findNavController(CadastroEnderecoFragment.this)
                     .navigate(R.id.action_CadastroEnderecoFragment_to_CidadesFragment);
         });
+
+        //Receive extra data
+        Bundle extras = getArguments();
+        
     }
 
     @Override

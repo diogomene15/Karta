@@ -63,6 +63,17 @@ public class EnderecosFragment extends Fragment {
     }
 
     @Override
+    public void onResume() {
+        super.onResume();
+        AppDatabase db = AppDatabase.getDatabase(getContext());
+        enderecoDAO = db.enderecoDao();
+
+        List<EnderecoCidade> enderecosCidade = enderecoDAO.getAllEnderecoCidade();
+
+        binding.listCidades.setAdapter(new EnderecosListAdapter(getContext(), enderecosCidade));
+    }
+
+    @Override
     public void onDestroyView() {
         super.onDestroyView();
         binding = null;
