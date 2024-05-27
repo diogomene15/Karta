@@ -87,7 +87,7 @@ public class LoginFragment extends Fragment {
                 CurrentUser cu = CurrentUser.getInstance();
                 cu.setUser(usuario);
                 NavHostFragment.findNavController(LoginFragment.this)
-                        .navigate(R.id.action_LoginFragment_to_CidadesFragment);
+                        .navigate(R.id.action_LoginFragment_to_EnderecosFragment);
             }
         }
     }
