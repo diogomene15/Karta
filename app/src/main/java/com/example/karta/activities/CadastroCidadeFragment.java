@@ -9,6 +9,7 @@ import android.widget.Toast;
 
 import androidx.annotation.NonNull;
 import androidx.fragment.app.Fragment;
+import androidx.navigation.NavController;
 import androidx.navigation.fragment.NavHostFragment;
 
 import com.example.karta.R;
@@ -45,6 +46,7 @@ public class CadastroCidadeFragment extends Fragment {
 
                 if (!nomeCidade.isEmpty() && !nomeEstado.isEmpty()) {
                     new InsertCidadeTask().execute(new Cidade(nomeCidade, nomeEstado));
+
                 } else {
                     Toast.makeText(getActivity(), "Preencha todos os campos", Toast.LENGTH_SHORT).show();
                 }
@@ -75,6 +77,8 @@ public class CadastroCidadeFragment extends Fragment {
         protected void onPostExecute(Cidade cidadeExistente) {
             if (cidadeExistente == null){
                 Toast.makeText(getActivity(), "Cidade cadastrada com sucesso", Toast.LENGTH_SHORT).show();
+                NavController navController = NavHostFragment.findNavController(CadastroCidadeFragment.this);
+                navController.popBackStack();
             } else {
                 Toast.makeText(getActivity(), "Cidade já cadastrada", Toast.LENGTH_SHORT).show();
             }

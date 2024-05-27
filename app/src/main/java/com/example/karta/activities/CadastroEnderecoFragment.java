@@ -14,6 +14,7 @@ import androidx.fragment.app.Fragment;
 import androidx.navigation.NavController;
 import androidx.navigation.fragment.NavHostFragment;
 
+import com.example.karta.R;
 import com.example.karta.dao.CidadeDAO;
 import com.example.karta.dao.EnderecoDAO;
 import com.example.karta.database.AppDatabase;
@@ -67,6 +68,11 @@ public class CadastroEnderecoFragment extends Fragment {
                     Toast.makeText(getActivity(), "Preencha todos os campos", Toast.LENGTH_SHORT).show();
                 }
             }
+        });
+
+        binding.buttonSeeCidades.setOnClickListener(v ->{
+            NavHostFragment.findNavController(CadastroEnderecoFragment.this)
+                    .navigate(R.id.action_CadastroEnderecoFragment_to_CidadesFragment);
         });
     }
 
