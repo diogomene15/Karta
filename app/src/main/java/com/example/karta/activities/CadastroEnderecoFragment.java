@@ -11,7 +11,10 @@ import android.widget.Toast;
 
 import androidx.annotation.NonNull;
 import androidx.fragment.app.Fragment;
+import androidx.navigation.NavController;
+import androidx.navigation.fragment.NavHostFragment;
 
+import com.example.karta.R;
 import com.example.karta.dao.CidadeDAO;
 import com.example.karta.dao.EnderecoDAO;
 import com.example.karta.database.AppDatabase;
@@ -66,6 +69,15 @@ public class CadastroEnderecoFragment extends Fragment {
                 }
             }
         });
+
+        binding.buttonSeeCidades.setOnClickListener(v ->{
+            NavHostFragment.findNavController(CadastroEnderecoFragment.this)
+                    .navigate(R.id.action_CadastroEnderecoFragment_to_CidadesFragment);
+        });
+
+        //Receive extra data
+        Bundle extras = getArguments();
+        
     }
 
     @Override
@@ -97,6 +109,8 @@ public class CadastroEnderecoFragment extends Fragment {
         protected void onPostExecute(Endereco enderecoExistente) {
             if (enderecoExistente == null){
                 Toast.makeText(getActivity(), "Endereco cadastrado com sucesso", Toast.LENGTH_SHORT).show();
+                NavController navController = NavHostFragment.findNavController(CadastroEnderecoFragment.this);
+                navController.popBackStack();
             } else {
                 Toast.makeText(getActivity(), "Endereco já cadastrado", Toast.LENGTH_SHORT).show();
             }

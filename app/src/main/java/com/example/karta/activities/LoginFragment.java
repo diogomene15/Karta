@@ -16,6 +16,7 @@ import com.example.karta.dao.UsuarioDAO;
 import com.example.karta.database.AppDatabase;
 import com.example.karta.databinding.LoginFragmentBinding;
 import com.example.karta.entities.Usuario;
+import com.example.karta.useCases.CurrentUser;
 
 public class LoginFragment extends Fragment {
 
@@ -32,6 +33,8 @@ public class LoginFragment extends Fragment {
     public void onViewCreated(@NonNull View view, Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
 
+        CurrentUser cu = CurrentUser.getInstance();
+        cu.setUser(null);
         binding.buttonSubmitLogin.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -83,8 +86,10 @@ public class LoginFragment extends Fragment {
             } else if (usuario.getSenha() == null){
                 Toast.makeText(getActivity(), "Senha incorreta", Toast.LENGTH_SHORT).show();
             } else {
+                CurrentUser cu = CurrentUser.getInstance();
+                cu.setUser(usuario);
                 NavHostFragment.findNavController(LoginFragment.this)
-                        .navigate(R.id.action_LoginFragment_to_CidadesFragment);
+                        .navigate(R.id.action_LoginFragment_to_EnderecosFragment);
             }
         }
     }

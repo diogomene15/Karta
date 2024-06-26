@@ -17,10 +17,12 @@ import com.example.karta.database.AppDatabase;
 import com.example.karta.databinding.CadastroFragmentBinding;
 import com.example.karta.databinding.LoginFragmentBinding;
 import com.example.karta.entities.Usuario;
+import com.example.karta.useCases.CurrentUser;
 
 public class CadastroFragment extends Fragment {
 
     private CadastroFragmentBinding binding;
+    private Usuario currentUser;
 
     @Override
     public View onCreateView(@NonNull LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
@@ -32,6 +34,9 @@ public class CadastroFragment extends Fragment {
 
     public void onViewCreated(@NonNull View view, Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
+
+        CurrentUser cu = CurrentUser.getInstance();
+        cu.setUser(null);
 
         binding.buttonSubmitCadastro.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -63,13 +68,16 @@ public class CadastroFragment extends Fragment {
     private class InsertUserTask extends AsyncTask<Usuario, Void, Usuario> {
         @Override
         protected Usuario doInBackground(Usuario... usuarios) {
+            currentUser = usuarios[0];
             AppDatabase db = AppDatabase.getDatabase(getContext());
             UsuarioDAO usuarioDAO = db.usuarioDao();
             Usuario usuarioExistente = usuarioDAO.getUserByEmail(usuarios[0].getEmail());
             if (usuarioExistente != null){
                 return usuarioExistente;
             }
-            usuarioDAO.insert(usuarios[0]);
+            long userId = usuarioDAO.insert(usuarios[0]);
+            currentUser.setUsuarioId(userId);
+
             return null;
         }
 
@@ -77,8 +85,14 @@ public class CadastroFragment extends Fragment {
         protected void onPostExecute(Usuario usuarioExistente) {
             if (usuarioExistente == null){
                 Toast.makeText(getActivity(), "Usuário cadastrado", Toast.LENGTH_SHORT).show();
+                if(currentUser.getUsuarioId() <= 0){
+                    return;
+                }
+                CurrentUser cu = CurrentUser.getInstance();
+                cu.setUser(currentUser);
+
                 NavHostFragment.findNavController(CadastroFragment.this)
-                        .navigate(R.id.action_CadastroFragment_to_CidadesFragment);
+                        .navigate(R.id.action_CadastroFragment_to_EnderecosFragment);
             } else {
                 Toast.makeText(getActivity(), "Email já cadastrado", Toast.LENGTH_SHORT).show();
             }
